@@ -1,5 +1,5 @@
 angular
-.module('MyApp', ['ngGeolocation', 'google-maps'])
+.module('Geo', ['ngGeolocation', 'google-maps'])
 .controller('geolocCtrl', ['$geolocation', '$scope', function($geolocation, $scope) {
 
   $geolocation.watchPosition({
@@ -20,7 +20,25 @@ angular
 
 });
 
-$http.get(url:$http.get('/https://maps.googleapis.com/maps/api/distancematrix/json?origins=51.5034070,-0.1275920&destinations=51.5065393,-0.1431443&mode=driving&key=AIzaSyAQnbuaV4vimAOtYPVZvACuxPnVYgayKfY', config).then(successCallback, errorCallback);
+
+// https://maps.googleapis.com/maps/api/distancematrix/json?origins=51.5034070,-0.1275920&destinations=51.5065393,-0.1431443&mode=driving&key=AIzaSyAQnbuaV4vimAOtYPVZvACuxPnVYgayKfY
 
 
-https://maps.googleapis.com/maps/api/distancematrix/json?origins=51.5034070,-0.1275920&destinations=51.5065393,-0.1431443&mode=driving&key=AIzaSyAQnbuaV4vimAOtYPVZvACuxPnVYgayKfY
+
+app.controller('etaCtrl',[
+	'$scope',
+	'$http',
+	function($scope, $http){
+		// var categories = $resource('https://developers.zomato.com/api/v2.1/categories?user_key=b9a7f37a405a0b234d0e9b0714e80d1d')
+		$http({
+			method: 'GET',
+			url: 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=51.5034070,-0.1275920&destinations=51.5065393,-0.1431443&mode=driving&key=AIzaSyAQnbuaV4vimAOtYPVZvACuxPnVYgayKfY'
+			}
+			}).then(function successCallback(response) {
+			    console.log('success');
+			    res.send(response);
+
+
+			    	})
+  
+}
