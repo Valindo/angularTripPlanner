@@ -10,5 +10,7 @@ app.config(function($routeProvider){
 
 app.controller('searchCtrl',['$scope',function($scope){
 	$scope.test = "man";
+	
 }])
+
 
