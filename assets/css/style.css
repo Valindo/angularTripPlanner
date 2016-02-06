@@ -1,0 +1,80 @@
+body{
+	background-color: #03C9A9;
+	color: white;
+	font-weight: 100;
+	font-family: ;
+}
+
+.search-form{
+	margin-top: 10%;
+}
+
+.search-header{
+	margin-bottom: 15%;
+}
+
+
+.search-form input{
+	background-color: transparent;
+	border-color: white;
+	border-width: 3px;
+	border-radius: 20px;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #fff !important;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #fff !important;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #fff !important;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #fff !important;
+}
+:placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
+  color:    #fff !important;
+}
+
+.btn-default{
+	background-color: transparent; !important;
+	text-shadow: none;
+	background-image:none;
+	color: white;
+	border-color: white;
+	border-width: 3px;
+	border-radius: 20px;
+}
+
+.btn-default:focus, .btn-default:hover{
+	background-color: white;
+	color:#03C9A9;
+	border-color: white;
+}
+
+.form-control:focus{
+	border-color: #BDC3C7;
+}
+
+::-webkit-input-placeholder {
+   text-align: center;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   text-align: center;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   text-align: center;  
+}
+
+:-ms-input-placeholder {  
+   text-align: center; 
+}
+input { 
+    text-align: center; 
+    color: white !important;
+}
