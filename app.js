@@ -1,5 +1,5 @@
 
-var app = angular.module("myApp",["ngRoute"]);
+var app = angular.module("myApp",["ngRoute", 'geolocation']);
 
 
 
@@ -57,49 +57,27 @@ $scope.test = function(){
 
 }]);
 
+//fetch current lat-lon
 
 
-// app.controller('zomatoCtrl',[
-// 	'$scope',
-// 	'$http',
-// 	function($scope, $http){
-// 		// var categories = $resource('https://developers.zomato.com/api/v2.1/categories?user_key=b9a7f37a405a0b234d0e9b0714e80d1d')
+
+app.controller('locationCtrl',[
+	'$scope',
+	function ($scope,geolocation) {
+    geolocation.getLocation().then(function(data){
+      $scope.coords = {
+      	lat:data.coords.latitude,
+       lon:data.coords.longitude
+   };
+   console.log("lat"+ lat );
+
+    });
+}
+
+	]);
 
 
-// 				$http({
-// 			  method: 'GET',
-			  
-// 			  headers: {	'Accept':'application/json',
-// 			  		'user_key':'b9a7f37a405a0b234d0e9b0714e80d1d'},
-// 			  url: 'https://developers.zomato.com/api/v2.1/categories'
-
-// 		$http({
-// 			method: 'GET',			  
-// 			headers: {	
-// 				'Accept':'application/json',
-// 			  	'user_key':'b9a7f37a405a0b234d0e9b0714e80d1d'
-// 			},
-// 			url: 'https://developers.zomato.com/api/v2.1/geocode?',
-// 			params: {
-// 				lat: '18.5204303',
-// 				lon: '73.8567437'
-// 			}
-
-// 			}).then(function successCallback(response) {
-// 			    // this callback will be called asynchronously
-// 			    // when the response is available
-// 			    console.log('success');
-// 			    res.send(response);
-
-
-// 			    	})
-
-			  
-// }
-
-// ]);
-
-
+//controller to fetch fooddata
 app.controller('foodCtrl',[
 	'$scope',
 	'$http',
@@ -115,19 +93,20 @@ app.controller('foodCtrl',[
 						  	"location" :"-33.870775,151.199025", //lat+lon
 			  				"radius": 500,
 			  				"types" :"food",
-			  				"key":'AIzaSyDoP3r_kNAEeP783YmuGSr05rAvR-ST-vA'
-			  				
-
-			  }
+			  				"key":'AIzaSyCkLKyLgo71Fu_2pSaIQXfEQ5SsJHGcU5Q'
+			  			}
 			}).success(function (data,status){
 			    // this callback will be called asynchronously
 			    // when the response is available
 			    console.log("success");
 			    $scope.foodData = data;
 			    console.log(data);
-			    
+			    });
+		},
 
 
-			    	});
-		}
+
 	])
+
+
+
