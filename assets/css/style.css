@@ -78,3 +78,13 @@ input {
     text-align: center; 
     color: white !important;
 }
+
+.sabre-logo{
+	position: absolute;
+	bottom: 2%;
+	left:1%;
+}
+
+.sabre-logo img{
+	width:100%;
+}

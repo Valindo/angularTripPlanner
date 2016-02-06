@@ -50,6 +50,9 @@ $scope.test = function(){
 		url: "https://api.flightstats.com/flex/flightstatus/rest/v2/json/flight/status/"+$scope.flightCode+"/"+$scope.flightNumber+"/dep/2016/02/06?appId=6a6c02d7&appKey=20e4b459aefb18c1b86e4bf9d26f223b&utc=false",	
 	}).then(function(response){
 		console.log(response.data);
+		var jsonString = JSON.stringify(response.data);
+		var json = JSON.parse(jsonString);
+		console.log(typeof(response.data));
 	}, function(response){
 
 	})

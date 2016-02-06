@@ -1,0 +1,183 @@
+{
+  "request": {
+    "airline": {
+      "requestedCode": "TK",
+      "fsCode": "TK"
+    },
+    "flight": {
+      "requested": "720",
+      "interpreted": "720"
+    },
+    "date": {
+      "year": "2016",
+      "month": "2",
+      "day": "6",
+      "interpreted": "2016-02-06"
+    },
+    "utc": {
+      "requested": "false",
+      "interpreted": false
+    },
+    "airport": {
+      
+    },
+    "codeType": {
+      
+    },
+    "extendedOptions": {
+      
+    },
+    "url": "https://api.flightstats.com/flex/flightstatus/rest/v2/json/flight/status/TK/720/dep/2016/02/06"
+  },
+  "appendix": {
+    "airlines": [
+      {
+        "fs": "AC",
+        "iata": "AC",
+        "icao": "ACA",
+        "name": "Air Canada",
+        "phoneNumber": "1-800-247-2262",
+        "active": true
+      },
+      {
+        "fs": "AI",
+        "iata": "AI",
+        "icao": "AIC",
+        "name": "Air India",
+        "active": true
+      },
+      {
+        "fs": "TK",
+        "iata": "TK",
+        "icao": "THY",
+        "name": "Turkish Airlines",
+        "active": true
+      }
+    ],
+    "airports": [
+      {
+        "fs": "BOM",
+        "iata": "BOM",
+        "icao": "VABB",
+        "name": "Chhatrapati Shivaji International Airport",
+        "city": "Mumbai",
+        "cityCode": "BOM",
+        "countryCode": "IN",
+        "countryName": "India",
+        "regionName": "Asia",
+        "timeZoneRegionName": "Asia/Kolkata",
+        "localTime": "2016-02-06T09:14:15.956",
+        "utcOffsetHours": 5.5,
+        "latitude": 19.089891,
+        "longitude": 72.868047,
+        "elevationFeet": 24,
+        "classification": 1,
+        "active": true,
+        "delayIndexUrl": "https://api.flightstats.com/flex/delayindex/rest/v1/json/airports/BOM?codeType=fs",
+        "weatherUrl": "https://api.flightstats.com/flex/weather/rest/v1/json/all/BOM?codeType=fs"
+      },
+      {
+        "fs": "IST",
+        "iata": "IST",
+        "icao": "LTBA",
+        "name": "Istanbul Ataturk Airport",
+        "city": "Istanbul",
+        "cityCode": "IST",
+        "countryCode": "TR",
+        "countryName": "Turkey",
+        "regionName": "Europe",
+        "timeZoneRegionName": "Europe/Istanbul",
+        "localTime": "2016-02-06T05:44:15.955",
+        "utcOffsetHours": 2.0,
+        "latitude": 40.976667,
+        "longitude": 28.815278,
+        "elevationFeet": 158,
+        "classification": 1,
+        "active": true,
+        "delayIndexUrl": "https://api.flightstats.com/flex/delayindex/rest/v1/json/airports/IST?codeType=fs",
+        "weatherUrl": "https://api.flightstats.com/flex/weather/rest/v1/json/all/IST?codeType=fs"
+      }
+    ],
+    "equipments": [
+      {
+        "iata": "77W",
+        "name": "Boeing 777-300ER",
+        "turboProp": false,
+        "jet": true,
+        "widebody": true,
+        "regional": false
+      }
+    ]
+  },
+  "flightStatuses": [
+    {
+      "flightId": 666636388,
+      "carrierFsCode": "TK",
+      "flightNumber": "720",
+      "departureAirportFsCode": "IST",
+      "arrivalAirportFsCode": "BOM",
+      "departureDate": {
+        "dateLocal": "2016-02-06T19:35:00.000",
+        "dateUtc": "2016-02-06T17:35:00.000Z"
+      },
+      "arrivalDate": {
+        "dateLocal": "2016-02-07T05:10:00.000",
+        "dateUtc": "2016-02-06T23:40:00.000Z"
+      },
+      "status": "S",
+      "schedule": {
+        "flightType": "J",
+        "serviceClasses": "FJY",
+        "restrictions": ""
+      },
+      "operationalTimes": {
+        "publishedDeparture": {
+          "dateLocal": "2016-02-06T19:35:00.000",
+          "dateUtc": "2016-02-06T17:35:00.000Z"
+        },
+        "publishedArrival": {
+          "dateLocal": "2016-02-07T05:10:00.000",
+          "dateUtc": "2016-02-06T23:40:00.000Z"
+        },
+        "scheduledGateDeparture": {
+          "dateLocal": "2016-02-06T19:35:00.000",
+          "dateUtc": "2016-02-06T17:35:00.000Z"
+        },
+        "estimatedGateDeparture": {
+          "dateLocal": "2016-02-06T19:35:00.000",
+          "dateUtc": "2016-02-06T17:35:00.000Z"
+        },
+        "scheduledGateArrival": {
+          "dateLocal": "2016-02-07T05:10:00.000",
+          "dateUtc": "2016-02-06T23:40:00.000Z"
+        },
+        "estimatedGateArrival": {
+          "dateLocal": "2016-02-07T05:10:00.000",
+          "dateUtc": "2016-02-06T23:40:00.000Z"
+        }
+      },
+      "codeshares": [
+        {
+          "fsCode": "AC",
+          "flightNumber": "6690",
+          "relationship": "L"
+        },
+        {
+          "fsCode": "AI",
+          "flightNumber": "6074",
+          "relationship": "L"
+        }
+      ],
+      "flightDurations": {
+        "scheduledBlockMinutes": 365
+      },
+      "airportResources": {
+        "departureTerminal": "I",
+        "arrivalTerminal": "2"
+      },
+      "flightEquipment": {
+        "scheduledEquipmentIataCode": "77W"
+      }
+    }
+  ]
+}
