@@ -129,3 +129,11 @@ app.controller('foodCtrl',[
 	])
 
 
+app.controller('etaCtrl',['$scope', '$http', var eta=function($scope, $http){
+	$http({
+		method:'GET',
+		url:'https://maps.googleapis.com/maps/api/distancematrix/json?origins=15.2993260,74.1239960&destinations=Dabolim+Airport&key=AIzaSyAQnbuaV4vimAOtYPVZvACuxPnVYgayKfY'
+	}).success(function(data,status{
+		console.log(data);
+	}))
+}])
