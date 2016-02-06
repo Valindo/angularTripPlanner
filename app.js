@@ -12,6 +12,26 @@ app.config(['$routeProvider',function($routeProvider) {
 }])
 
 
+app.controller('getLocation', ['$scope', function($scope){
+	$scope.callToGetLocation = function(){
+		if (navigator.geolocation) {
+        	navigator.geolocation.getCurrentPosition(showPosition);
+    	} else { 
+        	console.log("Big booty bitches");
+    	}
+	
+
+	function showPosition(position) {
+    	$scope.lat =  position.coords.latitude; 
+    	$scope.lon = position.coords.longitude;	
+    	console.log($scope.lat);
+    	console.log($scope.lon);
+	}
+}
+	
+}])
+
+
 
 
 
