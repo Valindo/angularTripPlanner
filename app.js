@@ -4,18 +4,23 @@ var app = angular.module("myApp",["ngRoute"]);
 
 
 
-app.config(['$routeProvider',function($routeProvider) {
+app.config(['$routeProvider','$locationProvider',function($routeProvider, $locationProvider) {
 	$routeProvider.when('/',{
 		templateUrl: 'views/search.html',
 		controller: 'searchCtrl'
+	}).when('/flight',{
+		templateUrl: 'views/flightdetails.html'
 	})
+	$locationProvider.html5Mode(true);
 }])
 
 app.factory("locationInfo",[function(){
 	var currentLocation = {
 		lat: 0,
 		lon: 0,
-		aiportInfo: ""
+		aiportInfo: "",
+		departureTime: "",
+		flightNumber: ""
 	}
 	return currentLocation
 }]);
@@ -29,10 +34,8 @@ app.controller('getLocation', ['$scope','locationInfo', function($scope,location
         	console.log("Big booty bitches");
     	}
 	function showPosition(position) {
-    	$scope.lat =  position.coords.latitude; 
-    	$scope.lon = position.coords.longitude;	
-    	locationInfo.lat = $scope.lat;
-    	locationInfo.lon = $scope.lon;
+    	locationInfo.lat =  position.coords.latitude; 
+    	locationInfo.lon = position.coords.longitude;	
     	console.log(locationInfo.lat);
     	console.log(locationInfo.lon);
 	}
@@ -44,7 +47,7 @@ app.controller('getLocation', ['$scope','locationInfo', function($scope,location
 
 
 
-app.controller('searchCtrl',['$scope','$http',function($scope, $http){
+app.controller('searchCtrl',['$scope','$http','locationInfo',function($scope, $http,locationInfo){
 
 
 $scope.getFlightDetails = function(){
@@ -58,6 +61,8 @@ $scope.getFlightDetails = function(){
 	// console.log($scope.flightCode);
 	// $scope.flightNumber = parseInt($scope.flightDetails.match(/[0-9]/g).join().replace(/,/g,""));
 	// console.log($scope.flightNumber);
+	locationInfo.flightNumber = $scope.flightDetails;
+	
 	$scope.flightDetails = $scope.flightDetails.toUpperCase();
 	$scope.flightCode = String($scope.flightDetails).replace(/[0-9]/g,"");
 	$scope.flightNumber = parseInt($scope.flightDetails.replace(/[A-Z]/g,""));
@@ -69,6 +74,8 @@ $scope.getFlightDetails = function(){
 		var jsonString = JSON.stringify(response.data);
 		var json = JSON.parse(jsonString);
 		console.log(typeof(response.data));
+		console.log(json["appendix"]["airports"][0]["name"]);
+		locationInfo.airportInfo = json["appendix"]["airports"][0]["name"];
 	}, function(response){
 
 	})
