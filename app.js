@@ -11,46 +11,39 @@ app.config(['$routeProvider',function($routeProvider) {
 	})
 }])
 
+app.factory("locationInfo",[function(){
+	var currentLocation = {
+		lat: 0,
+		lon: 0
+	}
+	return currentLocation
+}]);
 
-app.controller('getLocation', ['$scope', function($scope){
+
+app.controller('getLocation', ['$scope','locationInfo', function($scope,locationInfo){
 	$scope.callToGetLocation = function(){
 		if (navigator.geolocation) {
         	navigator.geolocation.getCurrentPosition(showPosition);
     	} else { 
         	console.log("Big booty bitches");
     	}
-	
-
 	function showPosition(position) {
     	$scope.lat =  position.coords.latitude; 
     	$scope.lon = position.coords.longitude;	
-    	console.log($scope.lat);
-    	console.log($scope.lon);
+    	locationInfo.lat = $scope.lat;
+    	locationInfo.lon = $scope.lon;
+    	console.log(locationInfo.lat);
+    	console.log(locationInfo.lon);
 	}
 }
 	
-}])
+}]);
 
 
 
 
 
 app.controller('searchCtrl',['$scope','$http',function($scope, $http){
-	$scope.data = {
-  "request": {
-    "passengers": {
-      "adultCount": 1
-    },
-    "slice": [
-      {
-        "origin": "GOI",
-        "destination": "BOM",
-        "date": "2016-02-06"
-      }
-    ]   
-    
-  }
-};
 
 
 $scope.test = function(){
@@ -98,19 +91,16 @@ $scope.test = function(){
 
 
 
-app.controller('foodCtrl',[
-	'$scope',
-	'$http',
-	function($scope, $http){
+app.controller('foodCtrl',['$scope','$http','locationInfo',function($scope, $http, locationInfo){
 		// var categories = $resource('https://developers.zomato.com/api/v2.1/categories?user_key=b9a7f37a405a0b234d0e9b0714e80d1d')
 			
 			
-				$http({
+		$scope.getFoodPlaces = function(){		$http({
 			  method: 'GET',
 			  url: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?',
 			  params : {
 			  	
-						  	"location" :"-33.870775,151.199025", //lat+lon
+						  	"location" :locationInfo.lat+","+locationInfo.lon, //lat+lon
 			  				"radius": 500,
 			  				"types" :"food",
 			  				"key":'AIzaSyCkLKyLgo71Fu_2pSaIQXfEQ5SsJHGcU5Q'
@@ -121,11 +111,12 @@ app.controller('foodCtrl',[
 			    console.log("success");
 			    $scope.foodData = data;
 			    console.log(data);
-			    });
-		},
+			  });
+		}
+	}
 
 
 
-	])
+	]);
 
 
