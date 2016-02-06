@@ -54,7 +54,9 @@ $scope.test = function(){
 
 	})
 }
+
 }]);
+
 
 
 // app.controller('zomatoCtrl',[
@@ -62,6 +64,15 @@ $scope.test = function(){
 // 	'$http',
 // 	function($scope, $http){
 // 		// var categories = $resource('https://developers.zomato.com/api/v2.1/categories?user_key=b9a7f37a405a0b234d0e9b0714e80d1d')
+
+
+// 				$http({
+// 			  method: 'GET',
+			  
+// 			  headers: {	'Accept':'application/json',
+// 			  		'user_key':'b9a7f37a405a0b234d0e9b0714e80d1d'},
+// 			  url: 'https://developers.zomato.com/api/v2.1/categories'
+
 // 		$http({
 // 			method: 'GET',			  
 // 			headers: {	
@@ -73,6 +84,7 @@ $scope.test = function(){
 // 				lat: '18.5204303',
 // 				lon: '73.8567437'
 // 			}
+
 // 			}).then(function successCallback(response) {
 // 			    // this callback will be called asynchronously
 // 			    // when the response is available
@@ -84,5 +96,38 @@ $scope.test = function(){
 
 			  
 // }
+
 // ]);
 
+
+app.controller('foodCtrl',[
+	'$scope',
+	'$http',
+	function($scope, $http){
+		// var categories = $resource('https://developers.zomato.com/api/v2.1/categories?user_key=b9a7f37a405a0b234d0e9b0714e80d1d')
+			
+			
+				$http({
+			  method: 'GET',
+			  url: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?',
+			  params : {
+			  	
+						  	"location" :"-33.870775,151.199025", //lat+lon
+			  				"radius": 500,
+			  				"types" :"food",
+			  				"key":'AIzaSyDoP3r_kNAEeP783YmuGSr05rAvR-ST-vA'
+			  				
+
+			  }
+			}).success(function (data,status){
+			    // this callback will be called asynchronously
+			    // when the response is available
+			    console.log("success");
+			    $scope.foodData = data;
+			    console.log(data);
+			    
+
+
+			    	});
+		}
+	])
