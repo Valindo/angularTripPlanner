@@ -69,8 +69,6 @@ $scope.getFlightDetails = function(){
 		var jsonString = JSON.stringify(response.data);
 		var json = JSON.parse(jsonString);
 		console.log(typeof(response.data));
-	}, function(response){
-
 	})
 }
 
@@ -121,11 +119,15 @@ app.controller('foodCtrl',['$scope','$http','locationInfo',function($scope, $htt
 	]);
 
 
-app.controller('etaCtrl',['$scope', '$http', var eta=function($scope, $http){
+app.controller('etaCtrl',['$scope', '$http', 'locationInfo', function($scope, $http, locationInfo){
 	$http({
 		method:'GET',
-		url:'https://maps.googleapis.com/maps/api/distancematrix/json?origins=15.2993260,74.1239960&destinations=Dabolim+Airport&key=AIzaSyAQnbuaV4vimAOtYPVZvACuxPnVYgayKfY'
-	}).success(function(data,status{
-		console.log(data);
-	}))
+		url:'https://maps.googleapis.com/maps/api/distancematrix/json?origins='+locationInfo.lat+','+locationInfo.lon+'&destinations=Dabolim+Airport&key=AIzaSyAQnbuaV4vimAOtYPVZvACuxPnVYgayKfY'
+		// url:'https://maps.googleapis.com/maps/api/distancematrix/json?origins=15.2993260,74.1239960&destinations=Dabolim+Airport&key=AIzaSyAQnbuaV4vimAOtYPVZvACuxPnVYgayKfY'
+	}).then(function(response){
+		console.log(response.data);
+		var jsonString = JSON.stringify(response.data);
+		var json = JSON.parse(jsonString);
+		console.log(typeof(response.data));
+	})
 }])
