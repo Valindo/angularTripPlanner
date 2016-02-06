@@ -14,7 +14,8 @@ app.config(['$routeProvider',function($routeProvider) {
 app.factory("locationInfo",[function(){
 	var currentLocation = {
 		lat: 0,
-		lon: 0
+		lon: 0,
+		aiportInfo: ""
 	}
 	return currentLocation
 }]);
@@ -46,7 +47,7 @@ app.controller('getLocation', ['$scope','locationInfo', function($scope,location
 app.controller('searchCtrl',['$scope','$http',function($scope, $http){
 
 
-$scope.test = function(){
+$scope.getFlightDetails = function(){
 	// 	$http.post("https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyCkLKyLgo71Fu_2pSaIQXfEQ5SsJHGcU5Q", $scope.data ).success(function( data, status, headers, config){
 	// 		$scope.print = data;
 	// 	console.log(data);
