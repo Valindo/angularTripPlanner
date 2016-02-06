@@ -1,17 +1,21 @@
 
-var app = angular.module("myApp",["ngRoute"]);
+var app = angular.module("myApp",['ui.Router']);
 
 
 
 
-app.config(['$routeProvider','$locationProvider',function($routeProvider, $locationProvider) {
-	$routeProvider.when('/',{
-		templateUrl: 'views/search.html',
-		controller: 'searchCtrl'
-	}).when('/flight',{
-		templateUrl: '/views/flightdetails.html'
-	});
-	$locationProvider.html5Mode(true);
+app.config(['$stateProvider','$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
+	$stateProvider
+		.state('flights',{
+			url: '/flights',
+			templateUrl: './views/flightdetails.html',
+
+		});
+		.state('index',{
+			url: '/',
+			templateUrl: 'index.html'
+		})
+		$urlRouterProvider.otherwise('index');
 }])
 
 app.factory("locationInfo",[function(){
@@ -86,6 +90,7 @@ $scope.getFlightDetails = function(){
 		console.log(json["flightStatuses"][1]["arrivalDate"]["dateLocal"]);
 
 	}, function(response){
+
 
 	})
 }
