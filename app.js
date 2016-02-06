@@ -1,23 +1,6 @@
 
-// app.config(function($routeProvider){
-// 	$routeProvider.when('/', {
-// 		templateUrl: 'views/search',
-// 		controller: 'searchCtrl'
-// 	});
-// });
-
 var app = angular.module("myApp",["ngRoute"]);
 
-
-// app.config(function($stateProvider, $urlRouterProvider){
-// 	// $urlRouterProvider.otherwise("/state1");
-// 	$stateProvider.state('test', {
-// 		url: "/",
-// 		templateUrl: "/views/search.html",
-// 		controller: 'searchCtrl'
-// 	});
-
-// })
 
 
 app.config(['$routeProvider',function($routeProvider) {
@@ -56,7 +39,9 @@ $scope.test = function(){
 		console.log("BRRR");
 	})
 }
-}])
+
+}]);
+
 
 
 // app.controller('zomatoCtrl',[
@@ -65,12 +50,26 @@ $scope.test = function(){
 // 	function($scope, $http){
 // 		// var categories = $resource('https://developers.zomato.com/api/v2.1/categories?user_key=b9a7f37a405a0b234d0e9b0714e80d1d')
 
+
 // 				$http({
 // 			  method: 'GET',
 			  
 // 			  headers: {	'Accept':'application/json',
 // 			  		'user_key':'b9a7f37a405a0b234d0e9b0714e80d1d'},
 // 			  url: 'https://developers.zomato.com/api/v2.1/categories'
+
+// 		$http({
+// 			method: 'GET',			  
+// 			headers: {	
+// 				'Accept':'application/json',
+// 			  	'user_key':'b9a7f37a405a0b234d0e9b0714e80d1d'
+// 			},
+// 			url: 'https://developers.zomato.com/api/v2.1/geocode?',
+// 			params: {
+// 				lat: '18.5204303',
+// 				lon: '73.8567437'
+// 			}
+
 // 			}).then(function successCallback(response) {
 // 			    // this callback will be called asynchronously
 // 			    // when the response is available
@@ -83,6 +82,7 @@ $scope.test = function(){
 			  
 // }
 	
+
 
 
 // 	])
@@ -118,4 +118,3 @@ app.controller('foodCtrl',[
 			    	});
 		}
 	])
-
