@@ -15,7 +15,7 @@
 
 	<script src="../bower_components/angular-route/angular-route.min.js"></script>
 	<!-- // <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-route.js"></script> -->
-	<script src="./app.js"></script>
+	<script src="app.js"></script>
 	<!-- angular ui file -->
 
 	<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -25,11 +25,39 @@
 
 
 </head>
-<body ng-app="myApp">
+<body>
 
+<div ng-controller="geolocCtrl">
+<button ng-click="myPosition.coords()">Get loc</button>
+	{{geolocCtrl.map}}
+
+
+
+</div>
+
+
+
+
+
+<div ng-controller="etaCtrl">
+	<p>Distance matrix view</p>
+
+
+
+
+</div>
+
+
+
+
+<div ng-view></div>
+ 
+ <div ng-controller="foodCtrl">
+ <button ngClick="food">cat</button>
 	<div class="container">
 		<div ng-view></div>
 	</div>
+
 
 
 	<!-- <div ng-controller="zomatoCtrl"></div> -->
