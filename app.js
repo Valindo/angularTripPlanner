@@ -52,6 +52,7 @@ app.controller('flightPageDisplay', ['$scope','locationInfo', function($scope , 
 	$scope.lat = locationInfo.lat;
 	$scope.lon = locationInfo.lon;
 	$scope.airportName = locationInfo.airportInfo;
+	$scope.flightNumber = locationInfo.flightNumber;
 }])
 
 
