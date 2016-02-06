@@ -4,6 +4,7 @@ var app = angular.module("myApp",['ui.Router']);
 
 
 
+
 app.config(['$stateProvider','$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
 	$stateProvider
 		.state('flights',{
@@ -16,15 +17,18 @@ app.config(['$stateProvider','$urlRouterProvider',function($stateProvider, $urlR
 			templateUrl: 'index.html'
 		})
 		$urlRouterProvider.otherwise('index');
+
+	})
+
+	$locationProvider.html5Mode(true);
+
 }])
 
 app.factory("locationInfo",[function(){
 	var currentLocation = {
 		lat: 0,
 		lon: 0,
-		aiportInfo: "",
-		departureTime: "",
-		flightNumber: ""
+		aiportInfo: ""
 	}
 	return currentLocation
 }]);
@@ -38,8 +42,10 @@ app.controller('getLocation', ['$scope','locationInfo', function($scope,location
         	console.log("Big booty bitches");
     	}
 	function showPosition(position) {
-    	locationInfo.lat =  position.coords.latitude; 
-    	locationInfo.lon = position.coords.longitude;	
+    	$scope.lat =  position.coords.latitude; 
+    	$scope.lon = position.coords.longitude;	
+    	locationInfo.lat = $scope.lat;
+    	locationInfo.lon = $scope.lon;
     	console.log(locationInfo.lat);
     	console.log(locationInfo.lon);
 	}
@@ -52,12 +58,13 @@ app.controller('flightPageDisplay', ['$scope','locationInfo', function($scope , 
 	$scope.lat = locationInfo.lat;
 	$scope.lon = locationInfo.lon;
 	$scope.airportName = locationInfo.airportInfo;
+	$scope.flightNumber = locationInfo.flightNumber;
 }])
 
 
 
 
-app.controller('searchCtrl',['$scope','$http','locationInfo',function($scope, $http,locationInfo){
+app.controller('searchCtrl',['$scope','$http',function($scope, $http){
 
 
 $scope.getFlightDetails = function(){
@@ -71,7 +78,9 @@ $scope.getFlightDetails = function(){
 	// console.log($scope.flightCode);
 	// $scope.flightNumber = parseInt($scope.flightDetails.match(/[0-9]/g).join().replace(/,/g,""));
 	// console.log($scope.flightNumber);
+
 	locationInfo.flightNumber = $scope.flightDetails;
+
 
 	$scope.flightDetails = $scope.flightDetails.toUpperCase();
 	$scope.flightCode = String($scope.flightDetails).replace(/[0-9]/g,"");
@@ -84,12 +93,14 @@ $scope.getFlightDetails = function(){
 		var jsonString = JSON.stringify(response.data);
 		var json = JSON.parse(jsonString);
 		console.log(typeof(response.data));
+
 		console.log(json["appendix"]["airports"][0]["name"]);
 		locationInfo.airportInfo = json["appendix"]["airports"][0]["name"];
 		// locationInfo.departureTime = json["flightStatuses"][0]["operationalTimes"]["estimatedGateDeparture"]["dateLocal"];
 		console.log(json["flightStatuses"][1]["arrivalDate"]["dateLocal"]);
 
 	}, function(response){
+
 
 
 	})
@@ -142,3 +153,18 @@ app.controller('foodCtrl',['$scope','$http','locationInfo',function($scope, $htt
 	]);
 
 
+app.controller('etaCtrl',['$scope', '$http', 'locationInfo', function($scope, $http, locationInfo){
+	$scope.eta=function(){
+		$http({
+		method:'GET',
+		url:'https://maps.googleapis.com/maps/api/distancematrix/json?origins='+locationInfo.lat+','+locationInfo.lon+'&destinations=Dabolim+Airport&key=AIzaSyAQnbuaV4vimAOtYPVZvACuxPnVYgayKfY'
+		// url:'https://maps.googleapis.com/maps/api/distancematrix/json?origins=15.2993260,74.1239960&destinations=Dabolim+Airport&key=AIzaSyAQnbuaV4vimAOtYPVZvACuxPnVYgayKfY'
+	}).then(function(response){
+		console.log(response.data);
+		var jsonString = JSON.stringify(response.data);
+		var json = JSON.parse(jsonString);
+		console.log(typeof(response.data));
+		console.log(json('json.destination_addresses'))
+	})
+}
+}])
