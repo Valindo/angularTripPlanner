@@ -1,7 +1,6 @@
-<div class="row">
+<div class="row" ng-controller="flightPageDisplay">
 	<div class="col-md-6">
-		<iframe>
-			
+		<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyCkLKyLgo71Fu_2pSaIQXfEQ5SsJHGcU5Q&origin=({{lat}},{{lon}})&destination={{airportName.replace(/ +/g,"+")}}" allowfullscreen>
 		</iframe>
 		<button>Book a Cab</button>
 		<button>View Places nearby</button>
