@@ -1,18 +1,13 @@
-<div ng-controller="searchCtrl" class="text-center">
+<div ng-controller="searchCtrl" class="text-center search-form">
+	<h1 class="search-header">Trip Planner</h1>
 
-<!-- 	<div class="input-group input-group-lg">
-  <span class="input-group-addon" id="sizing-addon1"></span>
-  <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
-
-
-	<button ng-click="test()"></button>
-	{{print}} -->
+	<h4>Enter your flight number</h4>
 	<form>
 		<div class="form-group">
-			<input type="text" class="form-control" ng-model="flightDetails" placeholder="TK720">
+			<input type="text" class="form-control" ng-model="flightDetails" placeholder="Enter flight number like 'TK720'">
 		</div>
 		<div class="form-group">
-			<button type="submit" class="btn btn-default">Submit</button>
+			<button type="submit" class="btn btn-default" ng-click="test()">Submit</button>
 		</div>
 	</form>
 </div>
