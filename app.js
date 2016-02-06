@@ -76,6 +76,9 @@ $scope.getFlightDetails = function(){
 		console.log(typeof(response.data));
 		console.log(json["appendix"]["airports"][0]["name"]);
 		locationInfo.airportInfo = json["appendix"]["airports"][0]["name"];
+		// locationInfo.departureTime = json["flightStatuses"][0]["operationalTimes"]["estimatedGateDeparture"]["dateLocal"];
+		console.log(json["flightStatuses"][1]["arrivalDate"]["dateLocal"]);
+
 	}, function(response){
 
 	})
