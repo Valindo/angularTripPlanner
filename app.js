@@ -8,7 +8,14 @@ app.config(['$routeProvider',function($routeProvider) {
 	$routeProvider.when('/',{
 		templateUrl: 'views/search.html',
 		controller: 'searchCtrl'
+<<<<<<< HEAD
 	})
+=======
+	}).when('/flight',{
+		templateUrl: '/views/flightdetails.html'
+	});
+	$locationProvider.html5Mode(true);
+>>>>>>> 4aa3bfa743b84f301ce83ebab55f068e1a13c3bd
 }])
 
 app.factory("locationInfo",[function(){
@@ -41,6 +48,12 @@ app.controller('getLocation', ['$scope','locationInfo', function($scope,location
 }]);
 
 
+app.controller('flightPageDisplay', ['$scope','locationInfo', function($scope , locationInfo){
+	$scope.lat = locationInfo.lat;
+	$scope.lon = locationInfo.lon;
+	$scope.airportName = locationInfo.airportInfo;
+}])
+
 
 
 
@@ -58,6 +71,11 @@ $scope.getFlightDetails = function(){
 	// console.log($scope.flightCode);
 	// $scope.flightNumber = parseInt($scope.flightDetails.match(/[0-9]/g).join().replace(/,/g,""));
 	// console.log($scope.flightNumber);
+<<<<<<< HEAD
+=======
+	locationInfo.flightNumber = $scope.flightDetails;
+
+>>>>>>> 4aa3bfa743b84f301ce83ebab55f068e1a13c3bd
 	$scope.flightDetails = $scope.flightDetails.toUpperCase();
 	$scope.flightCode = String($scope.flightDetails).replace(/[0-9]/g,"");
 	$scope.flightNumber = parseInt($scope.flightDetails.replace(/[A-Z]/g,""));
