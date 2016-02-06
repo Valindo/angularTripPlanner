@@ -50,6 +50,9 @@ $scope.test = function(){
 		url: "https://api.flightstats.com/flex/flightstatus/rest/v2/json/flight/status/"+$scope.flightCode+"/"+$scope.flightNumber+"/dep/2016/02/06?appId=6a6c02d7&appKey=20e4b459aefb18c1b86e4bf9d26f223b&utc=false",	
 	}).then(function(response){
 		console.log(response.data);
+		var jsonString = JSON.stringify(response.data);
+		var json = JSON.parse(jsonString);
+		console.log(typeof(response.data));
 	}, function(response){
 
 	})
@@ -77,7 +80,39 @@ app.controller('locationCtrl',[
 	]);
 
 
-//controller to fetch fooddata
+
+
+
+
+
+//nishit's code put aside for a sec
+
+//geolocation code using watch
+// angular
+// .module('MyApp', ['ngGeolocation', 'google-maps'])
+// .controller('geolocCtrl', ['$geolocation', '$scope', function($geolocation, $scope) {
+
+//   $geolocation.watchPosition({
+//     timeout: 60000,
+//     maximumAge: 250,
+//     enableHighAccuracy: true
+//   })
+
+//   $scope.$watch('myPosition.coords',function (newValue, oldValue) {
+//     $scope.map = {
+//       center: {
+//         latitude: newValue.latitude,
+//         longitude: newValue.longitude
+//       },
+//       zoom: 16
+//     };                 
+//   }, true);
+
+// });
+
+
+
+
 app.controller('foodCtrl',[
 	'$scope',
 	'$http',
@@ -109,4 +144,35 @@ app.controller('foodCtrl',[
 	])
 
 
+// nishits code put aside
+// <<<<<<< HEAD
+// =======
+// // estimated time of arrival 
+// app.controller('etaCtrl',[
+// 	'$scope',
+// 	'$http',
+// 	function($scope, $http){
+// 		$http({
+// 			method: 'GET',
+// 			url: 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=51.5034070,-0.1275920&destinations=51.5065393,-0.1431443&key=AIzaSyAQnbuaV4vimAOtYPVZvACuxPnVYgayKfY'
+// 			}).then(function successCallback(response) {
+// 			    console.log('success');
+// 			    res.send(response);
 
+
+// 			    	})
+  
+// }])
+
+
+// $scope.eta = function(){
+// 	$http({
+// 		method: "GET",
+// 		url: "https://maps.googleapis.com/maps/api/distancematrix/json?origins=15.2993260,74.1239960&destinations=Dabolim+Airport&key=AIzaSyAQnbuaV4vimAOtYPVZvACuxPnVYgayKfY"+$scope.flightCode+"/"+$scope.flightNumber+"/dep/2016/02/06?appId=6a6c02d7&appKey=20e4b459aefb18c1b86e4bf9d26f223b&utc=false",	
+// 	}).then(function(response){
+// 		console.log(response.data);
+// 	}, function(response){
+
+// 	})
+// }
+// >>>>>>> f2d2c42ffa0ad2dbcadfc390c81b040ae92dd772
