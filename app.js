@@ -1,5 +1,5 @@
 
-var app = angular.module("myApp",["ngRoute"]);
+var app = angular.module("myApp",["ngRoute","ngGeolocation"]);
 
 
 
@@ -11,6 +11,13 @@ app.config(['$routeProvider',function($routeProvider) {
 }])
 
 
+app.controller('geoloCtrl',['$geolocation','$scope', function($geolocation, $scope){
+	$geolocation.getCurrentPosition({
+		timeout: 60000
+	}).then(function(position){
+		$scope.myPosition = position;
+	})
+}])
 
 
 app.controller('searchCtrl',['$scope','$http',function($scope, $http){
@@ -109,27 +116,7 @@ $scope.test = function(){
 
 
 //geolocation code using watch
-angular
-.module('MyApp', ['ngGeolocation', 'google-maps'])
-.controller('geolocCtrl', ['$geolocation', '$scope', function($geolocation, $scope) {
 
-  $geolocation.watchPosition({
-    timeout: 60000,
-    maximumAge: 250,
-    enableHighAccuracy: true
-  })
-
-  $scope.$watch('myPosition.coords',function (newValue, oldValue) {
-    $scope.map = {
-      center: {
-        latitude: newValue.latitude,
-        longitude: newValue.longitude
-      },
-      zoom: 16
-    };                 
-  }, true);
-
-});
 
 
 
@@ -174,30 +161,24 @@ app.controller('foodCtrl',[
 
 
 // estimated time of arrival 
-app.controller('etaCtrl',[
-	'$scope',
-	'$http',
-	function($scope, $http){
-		$http({
-			method: 'GET',
-			url: 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=51.5034070,-0.1275920&destinations=51.5065393,-0.1431443&key=AIzaSyAQnbuaV4vimAOtYPVZvACuxPnVYgayKfY'
-			}).then(function successCallback(response) {
-			    console.log('success');
-			    res.send(response);
-
-
-			    	})
-  
-}])
-
-
-$scope.eta = function(){
+app.controller('etaCtrl',['$scope','$http',function($scope, $http){
 	$http({
-		method: "GET",
-		url: "https://maps.googleapis.com/maps/api/distancematrix/json?origins=15.2993260,74.1239960&destinations=Dabolim+Airport&key=AIzaSyAQnbuaV4vimAOtYPVZvACuxPnVYgayKfY"+$scope.flightCode+"/"+$scope.flightNumber+"/dep/2016/02/06?appId=6a6c02d7&appKey=20e4b459aefb18c1b86e4bf9d26f223b&utc=false",	
-	}).then(function(response){
-		console.log(response.data);
-	}, function(response){
+		method: 'GET',
+		url: 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=51.5034070,-0.1275920&destinations=51.5065393,-0.1431443&key=AIzaSyAQnbuaV4vimAOtYPVZvACuxPnVYgayKfY'
+		}).then(function successCallback(response) {
+		    console.log('success');
+		    res.send(response);
+    	})
+  }]);
 
-	})
-}
+
+// $scope.eta = function(){
+// 	$http({
+// 		method: "GET",
+// 		url: "https://maps.googleapis.com/maps/api/distancematrix/json?origins=15.2993260,74.1239960&destinations=Dabolim+Airport&key=AIzaSyAQnbuaV4vimAOtYPVZvACuxPnVYgayKfY"+$scope.flightCode+"/"+$scope.flightNumber+"/dep/2016/02/06?appId=6a6c02d7&appKey=20e4b459aefb18c1b86e4bf9d26f223b&utc=false",	
+// 	}).then(function(response){
+// 		console.log(response.data);
+// 	}, function(response){
+
+// 	})
+// }
